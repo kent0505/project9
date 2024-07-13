@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/home_bloc.dart';
 import '../widgets/nav_bar.dart';
-import 'settings_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,9 +15,13 @@ class HomePage extends StatelessWidget {
           children: [
             BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
-                if (state is HomeSettings) return const SettingsPage();
+                if (state is HomeAdd) return const Text('Add');
 
-                if (state is HomeActivities) return const Text('Actives');
+                if (state is HomeTransactions) {
+                  return const Text('Transactions');
+                }
+
+                if (state is HomeMoneyBox) return const Text('MoneyBox');
 
                 return const _Home();
               },

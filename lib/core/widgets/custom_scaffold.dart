@@ -12,7 +12,8 @@ class CustomScaffold extends StatelessWidget {
         children: [
           // Container(
           //   height: MediaQuery.of(context).viewPadding.top,
-          //   color: const Color(0xff06334D),
+          //   // color: const Color(0xff06334D),
+          //   color: Colors.redAccent,
           // ),
           Expanded(
             child: Stack(

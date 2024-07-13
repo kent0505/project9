@@ -10,11 +10,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         if (state is HomeInitial) return;
         emit(HomeInitial());
       } else if (event.index == 1) {
-        if (state is HomeActivities) return;
-        emit(HomeActivities());
+        if (state is HomeAdd) return;
+        emit(HomeAdd());
+      } else if (event.index == 2) {
+        if (state is HomeTransactions) return;
+        emit(HomeTransactions());
       } else {
-        if (state is HomeSettings) return;
-        emit(HomeSettings());
+        if (state is HomeMoneyBox) return;
+        emit(HomeMoneyBox());
       }
     });
   }

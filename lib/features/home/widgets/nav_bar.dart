@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../core/config/app_colors.dart';
 import '../bloc/home_bloc.dart';
@@ -13,8 +13,8 @@ class NavBar extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        height: 63,
-        color: AppColors.navBar,
+        height: 76,
+        color: AppColors.navbar,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: BlocBuilder<HomeBloc, HomeState>(
@@ -24,24 +24,31 @@ class NavBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _NavBarButton(
-                  icon: Icons.home,
+                  asset: 'tab1',
                   active: state is HomeInitial,
                   onPressed: () {
                     context.read<HomeBloc>().add(ChangePageEvent(index: 0));
                   },
                 ),
                 _NavBarButton(
-                  icon: Icons.currency_exchange,
-                  active: state is HomeActivities,
+                  asset: 'tab2',
+                  active: state is HomeAdd,
                   onPressed: () {
                     context.read<HomeBloc>().add(ChangePageEvent(index: 1));
                   },
                 ),
                 _NavBarButton(
-                  icon: Icons.settings_outlined,
-                  active: state is HomeSettings,
+                  asset: 'tab3',
+                  active: state is HomeTransactions,
                   onPressed: () {
                     context.read<HomeBloc>().add(ChangePageEvent(index: 2));
+                  },
+                ),
+                _NavBarButton(
+                  asset: 'tab4',
+                  active: state is HomeMoneyBox,
+                  onPressed: () {
+                    context.read<HomeBloc>().add(ChangePageEvent(index: 3));
                   },
                 ),
               ],
@@ -55,12 +62,12 @@ class NavBar extends StatelessWidget {
 
 class _NavBarButton extends StatelessWidget {
   const _NavBarButton({
-    required this.icon,
+    required this.asset,
     required this.active,
     required this.onPressed,
   });
 
-  final IconData icon;
+  final String asset;
   final bool active;
   final void Function() onPressed;
 
@@ -69,21 +76,24 @@ class _NavBarButton extends StatelessWidget {
     return CupertinoButton(
       onPressed: onPressed,
       padding: EdgeInsets.zero,
-      child: Container(
+      child: SizedBox(
         width: 62,
-        height: 52,
-        decoration: BoxDecoration(
-          color: active ? Colors.grey : null,
-          borderRadius: BorderRadius.circular(12),
-        ),
+        height: 76,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 4),
-            Icon(
-              icon,
-              size: 25,
-              color: const Color(0xffffffff).withOpacity(0.67),
+            SvgPicture.asset(
+              'assets/$asset.svg',
+              color: active ? AppColors.main : const Color(0xff157aa8),
+            ),
+            const SizedBox(height: 8),
+            Container(
+              height: 5,
+              width: 5,
+              decoration: BoxDecoration(
+                color: active ? AppColors.main : null,
+                borderRadius: BorderRadius.circular(3),
+              ),
             ),
             const SizedBox(height: 4),
           ],

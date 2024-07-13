@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/config/router.dart';
@@ -7,9 +6,6 @@ import 'core/config/themes.dart';
 import 'features/home/bloc/home_bloc.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Color(0xff06334D),
-  ));
   runApp(const MyApp());
 }
 

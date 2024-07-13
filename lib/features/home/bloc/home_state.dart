@@ -4,6 +4,8 @@ abstract class HomeState {}
 
 class HomeInitial extends HomeState {}
 
-class HomeActivities extends HomeState {}
+class HomeAdd extends HomeState {}
 
-class HomeSettings extends HomeState {}
+class HomeTransactions extends HomeState {}
+
+class HomeMoneyBox extends HomeState {}

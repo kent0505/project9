@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/config/app_colors.dart';
+import '../../core/utils.dart';
 import '../../core/widgets/custom_scaffold.dart';
 
 class SplashPage extends StatefulWidget {
@@ -11,6 +13,25 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  void load() async {
+    await getData().then((value) {
+      Future.delayed(const Duration(seconds: 2), () {
+        if (onboard) {
+          context.go('/onboard');
+          // context.go('/home');
+        } else {
+          context.go('/home');
+        }
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    load();
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
