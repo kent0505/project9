@@ -59,16 +59,16 @@ class _OnboardPageState extends State<OnboardPage> {
                       subtitle: subtitle,
                     ),
                   ),
-                  const Positioned(
+                  Positioned(
                     left: 30,
                     bottom: 100,
                     child: Row(
                       children: [
-                        _Indicator(current: true),
-                        SizedBox(width: 4),
-                        _Indicator(current: false),
-                        SizedBox(width: 4),
-                        _Indicator(current: false),
+                        _Indicator(current: pageIndex == 0),
+                        const SizedBox(width: 4),
+                        _Indicator(current: pageIndex == 1),
+                        const SizedBox(width: 4),
+                        _Indicator(current: pageIndex == 2),
                       ],
                     ),
                   ),

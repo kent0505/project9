@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/widgets/custom_scaffold.dart';
+import '../../../core/widgets/page_title_card.dart';
+import '../../add/pages/add_page.dart';
+import '../../transaction/pages/transactions_page.dart';
 import '../bloc/home_bloc.dart';
+import '../widgets/big_button.dart';
+import '../widgets/balance_card.dart';
 import '../widgets/nav_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -15,11 +20,9 @@ class HomePage extends StatelessWidget {
         children: [
           BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
-              if (state is HomeAdd) return const Text('Add');
+              if (state is HomeAdd) return const AddPage();
 
-              if (state is HomeTransactions) {
-                return const Text('Transactions');
-              }
+              if (state is HomeTransactions) return const TransactionsPage();
 
               if (state is HomeMoneyBox) return const Text('MoneyBox');
 
@@ -43,9 +46,20 @@ class _Home extends StatefulWidget {
 class _HomeState extends State<_Home> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return const Stack(
       children: [
-        Text('Home'),
+        PageTitleCard(
+          title: 'Homepage',
+          height: 230,
+        ),
+        Column(
+          children: [
+            SizedBox(height: 160),
+            BalanceCard(),
+            SizedBox(height: 50),
+            BigButton(),
+          ],
+        ),
       ],
     );
   }
