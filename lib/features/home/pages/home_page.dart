@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/widgets/custom_scaffold.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/nav_bar.dart';
 
@@ -9,26 +10,24 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            BlocBuilder<HomeBloc, HomeState>(
-              builder: (context, state) {
-                if (state is HomeAdd) return const Text('Add');
+    return CustomScaffold(
+      body: Stack(
+        children: [
+          BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              if (state is HomeAdd) return const Text('Add');
 
-                if (state is HomeTransactions) {
-                  return const Text('Transactions');
-                }
+              if (state is HomeTransactions) {
+                return const Text('Transactions');
+              }
 
-                if (state is HomeMoneyBox) return const Text('MoneyBox');
+              if (state is HomeMoneyBox) return const Text('MoneyBox');
 
-                return const _Home();
-              },
-            ),
-            const NavBar(),
-          ],
-        ),
+              return const _Home();
+            },
+          ),
+          const NavBar(),
+        ],
       ),
     );
   }

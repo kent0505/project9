@@ -10,11 +10,10 @@ class CustomScaffold extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // Container(
-          //   height: MediaQuery.of(context).viewPadding.top,
-          //   // color: const Color(0xff06334D),
-          //   color: Colors.redAccent,
-          // ),
+          Container(
+            height: MediaQuery.of(context).viewPadding.top,
+            color: const Color(0xff06334D),
+          ),
           Expanded(
             child: Stack(
               children: [
