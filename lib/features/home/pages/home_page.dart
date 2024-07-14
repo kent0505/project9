@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/widgets/custom_scaffold.dart';
 import '../../../core/widgets/page_title_card.dart';
 import '../../add/pages/add_page.dart';
+import '../../box/pages/box_page.dart';
 import '../../transaction/bloc/transaction_bloc.dart';
 import '../../transaction/pages/transactions_page.dart';
 import '../bloc/home_bloc.dart';
@@ -31,7 +32,7 @@ class HomePage extends StatelessWidget {
 
                 if (state is HomeTransactions) return const TransactionsPage();
 
-                if (state is HomeMoneyBox) return const Text('MoneyBox');
+                if (state is HomeMoneyBox) return const BoxPage();
 
                 return const _Home();
               },

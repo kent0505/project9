@@ -8,16 +8,36 @@ import 'models/transaction.dart';
 
 bool onboard = true;
 bool expanded = false;
+String boxTarget = 'My car';
+double boxAmount = 0;
 
 Future<void> getData() async {
   final prefs = await SharedPreferences.getInstance();
   // await prefs.remove('onboard');
   onboard = prefs.getBool('onboard') ?? true;
+  boxTarget = prefs.getString('boxTarget') ?? 'My car';
+  boxAmount = prefs.getDouble('boxAmount') ?? 0;
 }
 
 Future<void> saveData() async {
   final prefs = await SharedPreferences.getInstance();
   prefs.setBool('onboard', false);
+}
+
+Future<void> saveTarget(String target) async {
+  final prefs = await SharedPreferences.getInstance();
+  boxTarget = target;
+  prefs.setString('boxTarget', target);
+}
+
+Future<void> saveBoxAmount(double value, bool plus) async {
+  final prefs = await SharedPreferences.getInstance();
+  if (plus) {
+    boxAmount = boxAmount + value;
+  } else {
+    boxAmount = boxAmount - value;
+  }
+  prefs.setDouble('boxAmount', boxAmount);
 }
 
 int getCurrentTimestamp() {
