@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/config/app_colors.dart';
 import '../../core/utils.dart';
 import '../../core/widgets/custom_scaffold.dart';
+import '../transaction/bloc/transaction_bloc.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -14,6 +16,7 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   void load() async {
+    context.read<TransactionBloc>().add(GetTransactionsEvent());
     await getData().then((value) {
       Future.delayed(const Duration(seconds: 2), () {
         if (onboard) {

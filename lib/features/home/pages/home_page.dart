@@ -5,7 +5,6 @@ import '../../../core/widgets/custom_scaffold.dart';
 import '../../../core/widgets/page_title_card.dart';
 import '../../add/pages/add_page.dart';
 import '../../box/pages/box_page.dart';
-import '../../transaction/bloc/transaction_bloc.dart';
 import '../../transaction/pages/transactions_page.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/big_button.dart';
@@ -20,23 +19,16 @@ class HomePage extends StatelessWidget {
     return CustomScaffold(
       body: Stack(
         children: [
-          BlocListener<HomeBloc, HomeState>(
-            listener: (context, state) {
-              if (state is HomeTransactions) {
-                context.read<TransactionBloc>().add(GetTransactionsEvent());
-              }
+          BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              if (state is HomeAdd) return const AddPage();
+
+              if (state is HomeTransactions) return const TransactionsPage();
+
+              if (state is HomeMoneyBox) return const BoxPage();
+
+              return const _Home();
             },
-            child: BlocBuilder<HomeBloc, HomeState>(
-              builder: (context, state) {
-                if (state is HomeAdd) return const AddPage();
-
-                if (state is HomeTransactions) return const TransactionsPage();
-
-                if (state is HomeMoneyBox) return const BoxPage();
-
-                return const _Home();
-              },
-            ),
           ),
           const NavBar(),
         ],
