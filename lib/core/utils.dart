@@ -64,6 +64,20 @@ String formatTime(int timestamp) {
   return DateFormat('HH:mm').format(dateTime);
 }
 
+String getTotalBalance() {
+  double incomes = 0;
+  double expenses = 0;
+  for (Transaction transaction in mytransactions) {
+    if (transaction.income) {
+      incomes = incomes + transaction.amount;
+    } else {
+      expenses = expenses + transaction.amount;
+    }
+  }
+  double total = incomes - expenses;
+  return total.toStringAsFixed(0);
+}
+
 String getLastMonthSpendings() {
   double amount = 0;
   List<Transaction> lastMonthTransactions = [];

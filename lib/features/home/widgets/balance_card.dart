@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/utils.dart';
+
 class BalanceCard extends StatelessWidget {
   const BalanceCard({super.key});
 
@@ -21,10 +23,10 @@ class BalanceCard extends StatelessWidget {
           ),
         ],
       ),
-      child: const Column(
+      child: Column(
         children: [
-          SizedBox(height: 32),
-          Row(
+          const SizedBox(height: 32),
+          const Row(
             children: [
               SizedBox(width: 4),
               Text(
@@ -36,13 +38,13 @@ class BalanceCard extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Row(
             children: [
-              SizedBox(width: 4),
+              const SizedBox(width: 4),
               Text(
-                '\$8500',
-                style: TextStyle(
+                '\$${getTotalBalance()}',
+                style: const TextStyle(
                   color: Color(0xff2D99FF),
                   fontSize: 30,
                   fontWeight: FontWeight.w700,
@@ -51,9 +53,9 @@ class BalanceCard extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 27),
+          const SizedBox(height: 27),
           // BAR CHART WIDGET HERE
-          SizedBox(height: 32),
+          const SizedBox(height: 32),
         ],
       ),
     );
