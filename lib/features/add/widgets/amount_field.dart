@@ -102,14 +102,14 @@ class AmountField extends StatelessWidget {
                 fontFamily: 'MontserratM',
               ),
               slidersColor: const Color(0xffff0000),
-              currentDate: DateTime.now(),
+              currentDate: convertToDateTime(controller.text),
               minDate: DateTime(2020, 1, 1),
               maxDate: DateTime(2030, 1, 1),
               padding: EdgeInsets.zero,
               contentPadding: const EdgeInsets.all(8),
               height: 309,
             );
-            onDate!(formatDateTime(date ?? DateTime.now()));
+            onDate!(formatDateTime(date ?? convertToDateTime(controller.text)));
           }
         },
       ),

@@ -18,3 +18,7 @@ String formatDateTime(DateTime date) {
   String formattedDate = DateFormat('dd-MM-yyyy').format(date);
   return formattedDate;
 }
+
+DateTime convertToDateTime(String date) {
+  return DateFormat('dd-MM-yyyy').parse(date);
+}

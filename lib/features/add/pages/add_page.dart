@@ -124,44 +124,44 @@ class _AddPageState extends State<AddPage> {
           children: [
             if (income) ...[
               CategoryButton(
-                title: 'Shopping',
-                color: const Color(0xffFFCF87),
-                active: controller3.text == 'Shopping',
-                onPressed: onCategory,
-              ),
-              const SizedBox(width: 32),
-              CategoryButton(
-                title: 'Medicine',
-                color: const Color(0xffE09FFF),
-                active: controller3.text == 'Medicine',
-                onPressed: onCategory,
-              ),
-              const SizedBox(width: 32),
-              CategoryButton(
-                title: 'Sport',
-                color: const Color(0xff87F0FF),
-                active: controller3.text == 'Sport',
-                onPressed: onCategory,
-              ),
-              const SizedBox(width: 32),
-              CategoryButton(
-                title: 'Travel',
-                color: const Color(0xffFF8787),
-                active: controller3.text == 'Travel',
-                onPressed: onCategory,
-              ),
-            ] else ...[
-              CategoryButton(
                 title: 'Work',
                 color: const Color(0xffE2842E),
-                active: controller4.text == 'Work',
+                active: controller3.text == 'Work',
                 onPressed: onCategory,
               ),
               const SizedBox(width: 32),
               CategoryButton(
                 title: 'Cash',
                 color: const Color(0xff87E73B),
-                active: controller4.text == 'Cash',
+                active: controller3.text == 'Cash',
+                onPressed: onCategory,
+              ),
+            ] else ...[
+              CategoryButton(
+                title: 'Shopping',
+                color: const Color(0xffFFCF87),
+                active: controller4.text == 'Shopping',
+                onPressed: onCategory,
+              ),
+              const SizedBox(width: 32),
+              CategoryButton(
+                title: 'Medicine',
+                color: const Color(0xffE09FFF),
+                active: controller4.text == 'Medicine',
+                onPressed: onCategory,
+              ),
+              const SizedBox(width: 32),
+              CategoryButton(
+                title: 'Sport',
+                color: const Color(0xff87F0FF),
+                active: controller4.text == 'Sport',
+                onPressed: onCategory,
+              ),
+              const SizedBox(width: 32),
+              CategoryButton(
+                title: 'Travel',
+                color: const Color(0xffFF8787),
+                active: controller4.text == 'Travel',
                 onPressed: onCategory,
               ),
             ],
