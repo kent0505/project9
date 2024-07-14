@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:money4/core/models/transaction.dart';
+import 'package:money4/features/transaction/bloc/transaction_bloc.dart';
 
 import '../../../core/utils.dart';
 import '../../../core/widgets/page_title_card.dart';
+import '../../home/bloc/home_bloc.dart';
 import '../widgets/add_button.dart';
 import '../widgets/amount_field.dart';
 import '../widgets/category_button.dart';
@@ -58,7 +62,21 @@ class _AddPageState extends State<AddPage> {
     checkActive();
   }
 
-  void onAdd() async {}
+  void onAdd() async {
+    context.read<TransactionBloc>().add(
+          AddTransactionEvent(
+            transaction: Transaction(
+              id: getCurrentTimestamp(),
+              income: income,
+              amount: double.tryParse(controller1.text) ?? 0,
+              date: controller2.text,
+              category: income ? controller3.text : controller4.text,
+            ),
+          ),
+        );
+    expanded = true;
+    context.read<HomeBloc>().add(ChangePageEvent(index: 2));
+  }
 
   @override
   void initState() {
