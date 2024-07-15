@@ -130,6 +130,7 @@ Future<List<Transaction>> getTransactions() async {
   List data = box.get('mytransactions') ?? [];
   mytransactions = data.cast<Transaction>();
   log(mytransactions.length.toString());
+  calculateExpenses();
   return mytransactions;
 }
 
@@ -137,5 +138,70 @@ Future<List<Transaction>> updateTransactions() async {
   final box = await Hive.openBox('transactionbox');
   box.put('mytransactions', mytransactions);
   mytransactions = await box.get('mytransactions');
+  calculateExpenses();
   return mytransactions;
+}
+
+int w1e = 0;
+int w2e = 0;
+int w3e = 0;
+int w4e = 0;
+int w5e = 0;
+int w6e = 0;
+int w7e = 0;
+
+int w1i = 0;
+int w2i = 0;
+int w3i = 0;
+int w4i = 0;
+int w5i = 0;
+int w6i = 0;
+int w7i = 0;
+
+void calculateExpenses() {
+  w1e = 0;
+  w2e = 0;
+  w3e = 0;
+  w4e = 0;
+  w5e = 0;
+  w6e = 0;
+  w7e = 0;
+
+  w1i = 0;
+  w2i = 0;
+  w3i = 0;
+  w4i = 0;
+  w5i = 0;
+  w6i = 0;
+  w7i = 0;
+
+  for (Transaction transaction in mytransactions) {
+    DateTime date = convertToDateTime(transaction.date);
+    log(date.toString());
+    log(date.weekday.toString());
+    if (transaction.income) {
+      if (date.weekday == 1) w1i = w1i + transaction.amount.toInt();
+      if (date.weekday == 2) w2i = w2i + transaction.amount.toInt();
+      if (date.weekday == 3) w3i = w3i + transaction.amount.toInt();
+      if (date.weekday == 4) w4i = w4i + transaction.amount.toInt();
+      if (date.weekday == 5) w5i = w5i + transaction.amount.toInt();
+      if (date.weekday == 6) w6i = w6i + transaction.amount.toInt();
+      if (date.weekday == 7) w7i = w7i + transaction.amount.toInt();
+    } else {
+      if (date.weekday == 1) w1e = w1e + transaction.amount.toInt();
+      if (date.weekday == 2) w2e = w2e + transaction.amount.toInt();
+      if (date.weekday == 3) w3e = w3e + transaction.amount.toInt();
+      if (date.weekday == 4) w4e = w4e + transaction.amount.toInt();
+      if (date.weekday == 5) w5e = w5e + transaction.amount.toInt();
+      if (date.weekday == 6) w6e = w6e + transaction.amount.toInt();
+      if (date.weekday == 7) w7e = w7e + transaction.amount.toInt();
+    }
+  }
+}
+
+double getHeight(int a, int b) {
+  if (a == 0) return 9;
+  if (b == 0) return 9;
+  if (a > b) return 80;
+  return (a / b) * 80;
 }
